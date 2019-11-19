@@ -1,5 +1,6 @@
 class Cell
   attr_reader :current
+  attr_writer :setCurrent
 
   def initialize
     @current = false
@@ -18,6 +19,11 @@ class Cell
 
   def updateCurrent
     @current = @state
+  end
+
+  def setCurrent
+    @current = true
+
   end
 
 
