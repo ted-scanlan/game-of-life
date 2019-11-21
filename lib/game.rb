@@ -19,9 +19,9 @@ class Game
   end
 
   def populate(grid)
-    grid[2][0].setCurrent
     grid[2][1].setCurrent
     grid[2][2].setCurrent
+    grid[2][3].setCurrent
 
   end
 
@@ -29,27 +29,14 @@ class Game
 
       @grid.each_with_index do |row, y|
         row.each_with_index {|cell, x|
-
           calculate(x, y, cell, getNeighbours(cell, x, y))}
-
       end
-
   end
 
   def calculate(x, y, cell, neighbours)
-    @grid.map {|cell|}
 
-    values = neighbours.map {|cell| cell.current}
-    p""
-    p"LOOK"
-    p x
-    p y
-
-    p values
-    p ""
-    p ""
-
-
+      values = neighbours.map {|cell| cell.current}
+      return values
   end
 
   def getNeighbours(cell, x, y)
@@ -63,25 +50,18 @@ class Game
         end
       end
     end
-
     return @grid.near(x,y)
-    # .inspect
-
-
   end
+end
 
 
+class Array
 
-  end
-
-
-  class Array
-
-    # calculate near values and remove nils with #compact method.
-    def near(i,j)
-        [ self[i - 1][j - 1], self[i - 1][j - 0], self[i - 1][j + 1],
-          self[i - 0][j - 1],                     self[i - 0][j + 1],
-          self[i + 1][j - 1], self[i + 1][j - 0], self[i + 1][j + 1],
-        ].compact
-    end
+  # calculate near values and remove nils with #compact method.
+  def near(j,i)
+    [ self[i - 1][j - 1], self[i - 1][j - 0], self[i - 1][j + 1],
+    self[i - 0][j - 1],                     self[i - 0][j + 1],
+    self[i + 1][j - 1], self[i + 1][j - 0], self[i + 1][j + 1],
+  ].compact
+end
 end
