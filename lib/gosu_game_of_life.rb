@@ -46,11 +46,13 @@ class GameOfLifeWindow < Gosu::Window
                x * @col_width + (@col_width - 1), y * @row_height + (@row_height - 1), @dead,
                x * @col_width, y * @row_height + (@row_height - 1), @dead)
 
+               how do i increase board grid?
+
 
     end
   }
 }
-  
+
   end
 
   def needs_cursor?
