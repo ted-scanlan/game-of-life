@@ -1,5 +1,5 @@
 class Cell
-  attr_reader :current
+  attr_reader :current, :state
   attr_writer :setCurrent
 
   def initialize

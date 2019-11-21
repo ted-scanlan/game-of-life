@@ -18,6 +18,12 @@ class Game
     return grid
   end
 
+  def start
+    setFutureGrid
+    setCurrentGrid
+
+  end
+
   def populate(grid)
     grid[2][1].setCurrent
     grid[2][2].setCurrent
@@ -29,14 +35,31 @@ class Game
 
       @grid.each_with_index do |row, y|
         row.each_with_index {|cell, x|
-          calculate(x, y, cell, getNeighbours(cell, x, y))}
+          calculateFuture(cell, getNeighbours(cell, x, y))}
+      end
+
+  end
+
+  def calculateFuture(cell, neighbours)
+      values = neighbours.map {|neighbour| neighbour.current}
+      if !cell.alive?
+        cell.setFuture(true) if values.count(true) === 3
+        return
+      else
+        if values.count(true) <= 1 || values.count(true) > 3
+          cell.setFuture(false)
+        else
+          return
+        end
       end
   end
 
-  def calculate(x, y, cell, neighbours)
+  def setCurrentGrid
 
-      values = neighbours.map {|cell| cell.current}
-      return values
+    @grid.each do |row|
+      row.each {|cell| cell.updateCurrent}
+    end
+
   end
 
   def getNeighbours(cell, x, y)
