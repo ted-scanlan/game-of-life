@@ -1,9 +1,10 @@
 require_relative 'cell.rb'
 
 class Game
-  attr_reader :grid
+  attr_reader :grid, :grid_size
 
   def initialize(grid_size)
+    @grid_size = grid_size
     @grid = make_grid(grid_size)
   end
 
